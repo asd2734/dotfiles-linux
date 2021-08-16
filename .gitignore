@@ -1,4 +1,6 @@
 *
 !.gitignore
+!qtile/
 !qtile/config.py
-!kitty/kitty.conf
+!kitty
+!kitty/*
