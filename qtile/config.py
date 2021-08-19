@@ -40,22 +40,24 @@ terminal = "kitty"
 # Color scheme
 #   color names as defined in htmlcsscolor.com
 class Color( Enum ):
-    MIDNIGHT_EXPRESS =      "#282a36" # dark navy
+    MIDNIGHT_EXPRESS =      "#282A36" # dark navy
     SLATE_BLUE =            "#6A5ACD" # purplish
-    MAYA_BLUE =             "#57c7ff" # blue
-    ELECTRIC_BLUE =         "#8be9fd" # light blue
-    BLIZZARD_BLUE =         "#a8e3f1" # pastel blue
-    SUNSET_ORANGE =         "#ff5555" # salmonish orange
-    MACARONI_AND_CHEESE =   "#ffb86c" # light orange
-    SCREAMIN_GREEN =        "#5af78e" # bright light green
-    TIDAL =                 "#f1fa8c" # neon yellow
-    NEON_PINK =             "#ff6ac1" # neon pink
+    MAYA_BLUE =             "#57C7FF" # blue
+    DODGER_BLUE =           "#1E90FF" # neon blue
+    ELECTRIC_BLUE =         "#8BE9FD" # light blue
+    BLIZZARD_BLUE =         "#A8E3F1" # pastel blue
+    FIREBRICK =             "#B22222" # brick red
+    SUNSET_ORANGE =         "#FF5555" # salmonish orange
+    MACARONI_AND_CHEESE =   "#FFB86C" # light orange
+    SCREAMIN_GREEN =        "#5AF78E" # bright light green
+    TIDAL =                 "#F1FA8C" # neon yellow
+    NEON_PINK =             "#FF6AC1" # neon pink
     DUST_STORM =            "#E8C5BE" # beige
-    ALABASTER =             "#f1f1f0" # really really light grey (almost white)
+    ALABASTER =             "#F1F1F0" # really really light grey (almost white)
     MEDIUM_PURPLE =         "#835FD3" # just purple
     MEDIUM_ORCHID =         "#BA55D3" # darker orchid
     ORCHID =                "#DA70D6" # pinkish
-    PERFUME =               "#bd9cf9" # lavender
+    PERFUME =               "#BD9CF9" # lavender
 
 # Key bindings
 keys = [
@@ -177,6 +179,30 @@ screens = [
                     },
                     name_transform=lambda name: name.upper() ),
                 widget.Systray(),
+                widget.TextBox( 
+                    font="mononoki Nerd Font Bold",
+                    fmt="cpu" ),
+                widget.CPUGraph( 
+                    frequency=.5,
+                    width=60,
+                    margin_y=4,
+                    border_color=Color.DODGER_BLUE.value,
+                    graph_color=Color.DODGER_BLUE.value,
+                    fill_color=Color.DODGER_BLUE.value ),
+                widget.TextBox( 
+                    font="mononoki Nerd Font Bold",
+                    fmt="mem" ),
+                widget.MemoryGraph( 
+                    frequency=.5,
+                    width=60,
+                    margin_y=4,
+                    border_color=Color.MACARONI_AND_CHEESE.value,
+                    graph_color=Color.MACARONI_AND_CHEESE.value,
+                    fill_color=Color.MACARONI_AND_CHEESE.value ),
+                widget.Net(
+                    font="mononoki Nerd Font Bold",
+                    fontsize=12,
+                    format='d:{down: ^8.8}u:{up: ^8.8}' ),
                 widget.Wlan(
                     interface="wlp3s0",
                     font="mononoki Nerd Font Bold",
@@ -186,7 +212,7 @@ screens = [
                 widget.Volume(
                     update_interval=.05,
                     font='mononoki Nerd Font Bold',
-                    fmt="vol:{:0>4}",
+                    fmt="vol:{: ^3}",
                     padding=10,
                     foreground=Color.SLATE_BLUE.value,
                     background=Color.ELECTRIC_BLUE.value, ),
