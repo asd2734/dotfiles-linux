@@ -105,7 +105,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Menu 
-    Key( [mod], "space", lazy.spawn( "dmenu_run -p 'Run:'" ), desc="Run dmenu" ),
+    Key( [mod], "space", lazy.spawn( "rofi -show run" ), desc="Run rofi in run mode" ),
 
     # Volume
     Key( [], "XF86AudioRaiseVolume", lazy.spawn( "amixer -c 0 -q set Master 1dB+" ) ),
